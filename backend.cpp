@@ -21,7 +21,7 @@ void Backend::readFile(const QString &path)
             return;
 
         QByteArray bytes = file.readAll();
-        textContent = QString::fromStdString(bytes.toStdString());
+        textContent = QString::fromLatin1(bytes);
     }
 }
 
@@ -32,7 +32,7 @@ void Backend::saveFile(const QString &path)
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
 
-    file.write(result.toStdString().c_str());
+    file.write(result.toLatin1());
     file.close();
 }
 
