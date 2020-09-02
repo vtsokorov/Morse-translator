@@ -47,7 +47,7 @@ QMorse::QMorse()
 }
 
 QString QMorse::encode(const QString &s) {
-    QString r = "";
+    QString r;
 
     for (const QChar c : s) {
         if(alphabet.contains(c.toUpper())) {
@@ -67,13 +67,12 @@ QString QMorse::decode(const QString &s) {
 
     for(int index = 0; index < words.count(); ++index) {
         QString word = words[index].trimmed();
-        for(auto &chars : word.split(" ")) {
-            for (auto it = alphabet.begin(); it != alphabet.end(); it++) {
-                if (chars == it.value()) {
-                    r.append(it.key());
+        for(const auto &chars : word.split(" ")) {
+            for(const auto &value : alphabet) {
+                if (chars == value) {
+                    r.append(alphabet.key(value));
                 }
             }
-
         }
         r.append(index == words.count()-1 ? "" : " ");
     }
