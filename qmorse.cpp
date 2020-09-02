@@ -19,9 +19,9 @@ QString QMorse::encode(const QString &s) {
     QString r;
     for (const auto &c : s) {
         if(alphabet.contains(c.toUpper())) {
-            r.append(alphabet[c.toUpper()]).append(" ");
+            r.append(alphabet[c.toUpper()]).append(QChar::Space);
         } else {
-            if (c.isSpace()) r.append(" ");
+            if (c.isSpace()) r.append(QChar::Space);
         }
     }
 
@@ -31,16 +31,16 @@ QString QMorse::encode(const QString &s) {
 QString QMorse::decode(const QString &s) {
 
     QString r; 
-    QStringList words = s.split("  ");
+    QStringList words = s.split(QString().append(QChar::Space).append(QChar::Space));
     for(int index = 0; index < words.count(); ++index) {
         QString word = words[index].trimmed();
-        for(const auto &chars : word.split(" ")) {
+        for(const auto &chars : word.split(QChar::Space)) {
             for(const auto &value : alphabet) {
                 if (chars == value)
                     r.append(alphabet.key(value));
             }
         }
-        r.append(index == words.count()-1 ? "" : " ");
+        r.append(index == words.count()-1 ? QChar() : QChar::Space);
     }
 
     return r;

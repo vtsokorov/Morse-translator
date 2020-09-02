@@ -45,7 +45,7 @@ void Backend::inputContent(const QString &data, bool isMorse)
 }
 
 QString Backend::resultConvert() const {
-   return result;
+    return result;
 }
 
 void Backend::setResultConvert(const QString &text) {
