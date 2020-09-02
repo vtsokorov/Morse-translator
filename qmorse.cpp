@@ -17,7 +17,7 @@ QMorse::QMorse()
 QString QMorse::encode(const QString &s) {
 
     QString r;
-    for (const QChar &c : s) {
+    for (const auto &c : s) {
         if(alphabet.contains(c.toUpper())) {
             r.append(alphabet[c.toUpper()]).append(" ");
         } else {
