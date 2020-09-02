@@ -33,7 +33,7 @@ QString QMorse::decode(const QString &s) {
     QString r; 
     QStringList words = s.split(QString().append(QChar::Space).append(QChar::Space));
     for(int index = 0; index < words.count(); ++index) {
-        QString word = words[index].trimmed();
+        auto word = words[index].trimmed();
         for(const auto &chars : word.split(QChar::Space)) {
             for(const auto &value : alphabet) {
                 if (chars == value)
